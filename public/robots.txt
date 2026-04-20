@@ -1,0 +1,8 @@
+er-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://amazondd7.com/sitemap.xml
+
+# LLM reference (optional but helpful)
+llms: https://amazondd7.com/llms.txt

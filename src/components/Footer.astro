@@ -1,0 +1,135 @@
+---
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="logo-walk">Walk Free</span> <span class="logo-law">Law</span>
+      </div>
+      <p class="footer-desc">Practical, strategic, and efficient arbitration representation for Amazon businesses facing DD+7 policy disputes.</p>
+    </div>
+    
+    <div class="footer-links">
+      <h4 class="footer-heading">Nav</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/amazon-dd-plus-7/">What is DD+7?</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#about">About Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-locations">
+      <h4 class="footer-heading">Locations</h4>
+      <div class="locations-list">
+        <div class="loc">
+          <strong>California</strong>
+          <p>1001 Wilshire Blvd #2085<br/>Los Angeles, CA 90017<br/>(323) 507-6093</p>
+        </div>
+        <div class="loc">
+          <strong>Florida</strong>
+          <p>2801 Greene St, Suite 9<br/>Hollywood, FL 33020<br/>(754) 663-2219</p>
+        </div>
+        <div class="loc">
+          <strong>New York</strong>
+          <p>447 Broadway, 2nd Fl - #1142<br/>New York, NY 10013<br/>(212) 365-8009</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; {new Date().getFullYear()} Walk Free Law. All Rights Reserved. Not affiliated with Amazon.com, Inc. Attorney advertising.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--c-black);
+    color: var(--c-white);
+    padding-top: var(--spacing-section);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 2fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .logo-walk { color: var(--c-white); }
+  .logo-law { color: var(--c-blue-primary); }
+
+  .footer-desc {
+    color: var(--c-gray-200);
+    font-size: 0.95rem;
+  }
+
+  .footer-heading {
+    color: var(--c-white);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .footer-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-links a {
+    color: var(--c-gray-200);
+  }
+  
+  .footer-links a:hover {
+    color: var(--c-white);
+    text-decoration: underline;
+  }
+
+  .locations-list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .loc {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .loc strong {
+    display: block;
+    color: var(--c-blue-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .loc p {
+    color: var(--c-gray-200);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--c-gray-600);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

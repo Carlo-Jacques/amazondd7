@@ -1,0 +1,34 @@
+# amazondd7.com
+
+> Guidance on Amazon DD+7 payout delays, reserve issues, and arbitration
+> options for sellers and businesses.
+
+amazondd7.com provides informational content about Amazon DD+7 payment timing,
+delayed disbursements, reserve-related holds, cash flow disruption, and
+potential arbitration paths for sellers and businesses affected by DD7-related
+policy decisions.
+
+## Pages
+
+- / : Amazon DD+7 arbitration landing page
+- /amazon-dd-plus-7/ : What Amazon DD+7 means
+- /amazon-dd-7-payout-delay-explained/ : Why disbursements are late and what
+  to do
+- /can-you-challenge-amazon-dd-plus-7-payment-delays/ : When payment delays
+  may be challengeable
+- /challenge-dd7-policies-through-arbitration/ : Arbitration options and
+  pricing structure
+
+## Topics
+
+- Amazon DD+7
+- Amazon payout delays
+- Amazon reserve holds
+- Amazon seller payment disputes
+- Arbitration for Amazon-related disputes
+- Flat-fee and hybrid-fee legal models
+
+## Notes
+
+Informational only. No attorney-client relationship is created by use of this
+website. Case outcomes vary based on specific facts.

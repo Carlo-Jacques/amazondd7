@@ -1,0 +1,78 @@
+---
+interface Props {
+  headline?: string;
+  subheadline?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  variant?: 'light' | 'dark';
+}
+
+const { 
+  headline = "Challenge DD7 policies smarter.",
+  subheadline = "Flat fees. Hybrid pricing. Faster arbitration.",
+  buttonText = "Start Your Case Review",
+  buttonLink = "/#contact",
+  variant = 'dark'
+} = Astro.props;
+---
+
+<div class={`cta-banner ${variant === 'dark' ? 'banner-dark' : 'banner-light'}`}>
+  <div class="banner-content">
+    <h3>{headline}</h3>
+    <p>{subheadline}</p>
+  </div>
+  <div class="banner-action">
+    <a href={buttonLink} class={`btn ${variant === 'dark' ? 'btn-primary' : 'btn-dark'}`}>{buttonText}</a>
+  </div>
+</div>
+
+<style>
+  .cta-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 4rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin: 4rem 0;
+  }
+
+  .banner-dark {
+    background-color: var(--c-blue-dark);
+    color: var(--c-white);
+  }
+
+  .banner-dark h3 {
+    color: var(--c-white);
+  }
+
+  .banner-light {
+    background-color: var(--c-blue-light);
+    color: var(--c-black);
+    border: 1px solid var(--c-blue-primary);
+  }
+
+  .banner-light h3 {
+    color: var(--c-blue-primary);
+  }
+
+  .banner-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-content p {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .cta-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+  }
+</style>

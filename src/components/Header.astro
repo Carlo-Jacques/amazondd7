@@ -1,0 +1,72 @@
+---
+---
+<header class="header">
+  <div class="container header-content">
+    <div class="logo">
+      <a href="/">
+        <span class="logo-walk">Walk Free</span> <span class="logo-law">Law</span>
+      </a>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="/amazon-dd-plus-7/">What is DD+7?</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#about">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a href="/#contact" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 1rem;">Start Case Review</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--c-white);
+    border-bottom: 1px solid var(--c-gray-100);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo a {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-black);
+    text-decoration: none;
+    display: flex;
+    gap: 0.25rem;
+  }
+  
+  .logo-walk {
+    color: var(--c-blue-primary);
+  }
+  
+  .nav ul {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav a {
+    color: var(--c-gray-600);
+    font-weight: 500;
+  }
+  
+  .nav a:hover {
+    color: var(--c-accent);
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      display: none; /* Hide for simple mobile for now, can add hamburger later */
+    }
+  }
+</style>
