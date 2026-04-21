@@ -181,18 +181,19 @@ import Layout from '../layouts/Layout.astro';
         <div class="contact-form-wrapper">
           <h2>Request a Case Review</h2>
           <p>Fill out this brief form and our team will contact you to discuss arbitration viability and pricing options.</p>
-          <form class="intake-form" onsubmit="event.preventDefault(); alert('In a live environment, this would submit your case details securely.');">
+          <form id="home-contact-form" class="intake-form">
             <div class="form-group">
-              <input type="text" placeholder="Full Name" required />
+              <input type="text" name="name" placeholder="Full Name" required />
             </div>
             <div class="form-row">
-              <input type="email" placeholder="Email Address" required />
-              <input type="tel" placeholder="Phone Number" required />
+              <input type="email" name="email" placeholder="Email Address" required />
+              <input type="tel" name="phone" placeholder="Phone Number" required />
             </div>
             <div class="form-group">
-              <textarea rows="4" placeholder="Briefly describe your DD+7 or payment hold issue..." required></textarea>
+              <textarea name="description" rows="4" placeholder="Briefly describe your DD+7 or payment hold issue..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary w-full">Submit Case Review Request</button>
+            <button type="submit" id="home-submit-btn" class="btn btn-primary w-full">Submit Case Review Request</button>
+            <div id="home-form-message" style="margin-top: 1rem; font-weight: bold; text-align: center;"></div>
           </form>
         </div>
         <div class="contact-locations">
@@ -312,6 +313,53 @@ import Layout from '../layouts/Layout.astro';
     }
   ]
 }
+  </script>
+  <script>
+    const form = document.getElementById('home-contact-form');
+    const btn = document.getElementById('home-submit-btn');
+    const msg = document.getElementById('home-form-message');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        msg.textContent = '';
+        msg.style.color = 'inherit';
+
+        const formData = new FormData(form);
+        const data = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          description: formData.get('description')
+        };
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await res.json();
+          
+          if (res.ok) {
+            msg.style.color = 'green';
+            msg.textContent = 'Your request has been securely sent. We will be in touch shortly.';
+            form.reset();
+          } else {
+            msg.style.color = 'red';
+            msg.textContent = result.error || 'Something went wrong. Please try again.';
+          }
+        } catch (err) {
+          msg.style.color = 'red';
+          msg.textContent = 'A network error occurred. Please try again.';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Submit Case Review Request';
+        }
+      });
+    }
   </script>
 </Layout>
 

@@ -170,21 +170,22 @@ import Layout from '../layouts/Layout.astro';
       <p style="font-size: 1.25rem; color: var(--c-gray-600); margin-bottom: 1rem;">You don’t have to accept a DD7 decision—and you don’t have to take on unnecessary risk to challenge it.</p>
       <p style="font-size: 1.15rem; font-weight: 500; margin-bottom: 2.5rem; color: var(--c-blue-dark);">Start your case review today and find out if arbitration is the right path forward.</p>
       
-      <form class="intake-form" onsubmit="event.preventDefault(); alert('In a live environment, this would submit your consultation request.');" style="background: var(--c-gray-50); padding: 3rem; border-radius: var(--radius-md); text-align: left; box-shadow: var(--shadow-sm); border: 1px solid var(--c-gray-200);">
+      <form id="challenge-contact-form" class="intake-form" style="background: var(--c-gray-50); padding: 3rem; border-radius: var(--radius-md); text-align: left; box-shadow: var(--shadow-sm); border: 1px solid var(--c-gray-200);">
         <div style="margin-bottom: 1rem;">
-          <input type="text" placeholder="Full Name" required style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;" />
+          <input type="text" name="name" placeholder="Full Name" required style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;" />
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-          <input type="email" placeholder="Email Address" required style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;" />
-          <input type="tel" placeholder="Phone Number" style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;" />
+          <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;" />
+          <input type="tel" name="phone" placeholder="Phone Number" style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;" />
         </div>
         <div style="margin-bottom: 1.5rem;">
-          <textarea rows="4" placeholder="Briefly describe your situation..." required style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
+          <textarea name="description" rows="4" placeholder="Briefly describe your situation..." required style="width: 100%; padding: 1rem; border: 1px solid var(--c-gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
         </div>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <button type="submit" class="btn btn-primary" style="flex: 1; font-size: 1.1rem;">Start Case Review</button>
+          <button type="submit" id="challenge-submit-btn" class="btn btn-primary" style="flex: 1; font-size: 1.1rem;">Start Case Review</button>
           <button type="button" class="btn btn-secondary" style="flex: 1; font-size: 1.1rem; background: var(--c-white);">Book a Consultation</button>
         </div>
+        <div id="challenge-form-message" style="margin-top: 1.5rem; font-weight: bold; text-align: center;"></div>
       </form>
     </div>
   </section>
@@ -315,6 +316,53 @@ import Layout from '../layouts/Layout.astro';
     }
   ]
 }
+  </script>
+  <script>
+    const form = document.getElementById('challenge-contact-form');
+    const btn = document.getElementById('challenge-submit-btn');
+    const msg = document.getElementById('challenge-form-message');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        msg.textContent = '';
+        msg.style.color = 'inherit';
+
+        const formData = new FormData(form);
+        const data = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          description: formData.get('description')
+        };
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await res.json();
+          
+          if (res.ok) {
+            msg.style.color = 'green';
+            msg.textContent = 'Your consultation request has been safely submitted.';
+            form.reset();
+          } else {
+            msg.style.color = 'red';
+            msg.textContent = result.error || 'Something went wrong. Please try again.';
+          }
+        } catch (err) {
+          msg.style.color = 'red';
+          msg.textContent = 'A network error occurred. Please try again.';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Start Case Review';
+        }
+      });
+    }
   </script>
 </Layout>
 
