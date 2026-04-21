@@ -2,7 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Challenge DD7 Policies Through Arbitration | Walk Free Law">
+<Layout 
+  title="Challenge DD7 Policies Through Arbitration | Walk Free Law" 
+  description="Learn when Amazon DD+7 payment delays may go beyond normal timing and when arbitration may be an option." 
+  canonical="https://amazondd7.com/challenge-dd7/"
+>
   
   <!-- Hero Section -->
   <section class="hero section-bg-dark">
@@ -22,6 +26,16 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+
+  <!-- Credibility Strip -->
+  <div class="credibility-strip" style="background: var(--c-gray-100); border-top: 1px solid var(--c-gray-200); border-bottom: 1px solid var(--c-gray-200); padding: 1.5rem 0;">
+    <div class="container" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; text-align: center; color: var(--c-blue-dark); font-weight: 600; font-size: 1rem;">
+      <span style="display: flex; align-items: center; gap: 0.5rem;">🏛️ Multi-State Offices</span>
+      <span style="display: flex; align-items: center; gap: 0.5rem;">⚖️ Attorney-Led Representation</span>
+      <span style="display: flex; align-items: center; gap: 0.5rem;">🔍 Arbitration-Focused</span>
+      <span style="display: flex; align-items: center; gap: 0.5rem; opacity: 0.8; font-weight: 500;">(Independent Law Firm — Not Affiliated with Amazon)</span>
+    </div>
+  </div>
 
   <!-- Why Sellers Choose Us -->
   <section class="section section-bg-light">
@@ -48,7 +62,7 @@ import Layout from '../layouts/Layout.astro';
           <h3>Focused Expertise</h3>
           <p>Targeted experience in Amazon-related disputes and arbitration strategy.</p>
         </div>
-        <div class="benefit-card b-span">
+        <div class="benefit-card">
           <div class="b-icon">🔍</div>
           <h3>Transparent Process</h3>
           <p>Clear timelines, clear steps, and clear expectations from start to finish.</p>
@@ -62,7 +76,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="container dual-panel" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
       <div class="panel text-block">
         <h2>What a DD7 Policy Challenge Looks Like</h2>
-        <p>Amazon’s DD+7 framework can delay access to funds, restrict payouts, and create serious operational pressure. In many cases, sellers are left:</p>
+        <p>Amazon’s <a href="/amazon-dd-plus-7" style="color: var(--c-blue-primary); text-decoration: underline;">DD+7 framework</a> can delay access to funds, restrict payouts, and create serious operational pressure. In many cases, sellers are left:</p>
         <ul style="list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: var(--c-gray-600); font-size: 1.125rem; line-height: 1.6;">
           <li>Waiting weeks for funds tied to delivered orders</li>
           <li>Unable to reconcile reserves with actual transactions</li>
@@ -70,7 +84,7 @@ import Layout from '../layouts/Layout.astro';
           <li>Struggling to understand why funds are still being held</li>
         </ul>
         <div style="background-color: var(--c-blue-light); padding: 1.5rem; border-left: 4px solid var(--c-blue-primary);">
-          <p style="color: var(--c-blue-dark); font-weight: 500; margin: 0;">When those issues go beyond normal timing delays—or begin impacting your ability to operate—arbitration may be a viable path forward.</p>
+          <p style="color: var(--c-blue-dark); font-weight: 500; margin: 0;">When those issues go beyond <a href="/payout-delay-explained" style="text-decoration: underline; color: inherit;">normal timing delays</a>—or begin impacting your ability to operate—<a href="/amazon-holding-funds-legal-options" style="text-decoration: underline; color: inherit;">seeking legal options</a> via arbitration may be a viable path forward.</p>
         </div>
       </div>
       
@@ -84,7 +98,7 @@ import Layout from '../layouts/Layout.astro';
           </li>
           <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
             <span style="position: absolute; left: 0; color: var(--c-blue-primary);">☑️</span>
-            Funds are being held without clear explanation
+            <a href="/amazon-dd7-reserve-hold" style="text-decoration: underline; color: inherit;">Funds are being held</a> without clear explanation
           </li>
           <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
             <span style="position: absolute; left: 0; color: var(--c-blue-primary);">☑️</span>
@@ -116,7 +130,7 @@ import Layout from '../layouts/Layout.astro';
           </ul>
         </div>
         <div style="display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); padding: 3rem; border-radius: var(--radius-md);">
-          <h3 style="color: var(--c-blue-light); font-size: 1.75rem; text-align: center; line-height: 1.5;">Our goal is simple: resolve your DD7-related issue efficiently while <span style="border-bottom: 2px solid var(--c-accent);">keeping your financial exposure controlled.</span></h3>
+          <h3 style="color: var(--c-blue-light); font-size: 1.75rem; text-align: center; line-height: 1.5;">Our goal is simple: <a href="/amazon-payout-dispute-process" style="color: inherit; text-decoration: underline;">resolve your DD7-related issue</a> efficiently while <span style="border-bottom: 2px solid var(--c-accent);">keeping your financial exposure controlled.</span></h3>
         </div>
       </div>
     </div>
@@ -236,36 +250,121 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://amazondd7.com/challenge-dd7/#webpage",
+      "url": "https://amazondd7.com/challenge-dd7/",
+      "name": "Can You Challenge Amazon DD+7 Payment Delays?",
+      "description": "Learn when Amazon DD+7 payment delays may go beyond normal timing and when arbitration may be an option.",
+      "isPartOf": {
+        "@id": "https://amazondd7.com/#website"
+      },
+      "about": {
+        "@id": "https://amazondd7.com/#dd7-arbitration"
+      },
+      "publisher": {
+        "@id": "https://amazondd7.com/#legalservice"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can Amazon DD7 decisions be challenged?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In certain situations, yes. If the issue goes beyond standard payment timing and involves disputes over held funds or policy application, arbitration may be an option."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does DD7 arbitration cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Costs vary depending on the structure selected, but flat-fee and hybrid models are designed to significantly reduce the traditional $25,000+ legal barrier."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is arbitration faster than litigation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generally, arbitration is designed to be more streamlined and efficient than traditional court proceedings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is hybrid pricing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hybrid pricing combines a lower upfront fee with a performance-based component, reducing initial cost while aligning incentives."
+          }
+        }
+      ],
+      "@id": "https://amazondd7.com/challenge-dd7#faq",
+      "mainEntityOfPage": {
+        "@id": "https://amazondd7.com/challenge-dd7/#webpage"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+  </script>
 </Layout>
 
 <style>
+  .hero {
+    padding: 6rem 0 4rem;
+    background: linear-gradient(135deg, var(--c-black) 0%, var(--c-blue-dark) 100%);
+  }
+
   /* Reuse some critical styles directly here for grid items that aren't global */
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 2rem;
   }
   .benefit-card {
+    grid-column: span 2;
     background: var(--c-white);
     padding: 2.5rem;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     text-align: center;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Offset the 4th and 5th items to perfectly center them on the second row */
+  .benefit-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+  .benefit-card:nth-child(5) {
+    grid-column: 4 / span 2;
   }
   .benefit-card:hover { transform: translateY(-5px); }
   .b-icon { font-size: 3rem; margin-bottom: 1rem; }
   .benefit-card h3 { font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--c-black); }
   .benefit-card p { color: var(--c-gray-600); font-size: 1.05rem; margin: 0; }
-  .b-span { grid-column: 1 / -1; max-width: 600px; margin: 0 auto; width: 100%; }
 
   @media (max-width: 900px) {
+    .benefits-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .benefit-card {
+      grid-column: auto !important;
+    }
     .dual-panel, .strategy-content, .pricing-grid {
       grid-template-columns: 1fr !important;
       gap: 2rem !important;
     }
     .hero-content h1 { font-size: 2.25rem !important; }
     .hero-ctas { flex-direction: column; }
-    .b-span { grid-column: auto; }
   }
 </style>

@@ -4,11 +4,124 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
+  canonical?: string;
 }
 
-const { title, description = "Walk Free Law helps individuals and businesses challenge Amazon DD+7 policy decisions through streamlined arbitration." } = Astro.props;
+const {
+  title = "Amazon DD+7 Payout Help",
+  description = "Amazon DD+7 payout delay, reserve hold, and arbitration resource.",
+  canonical = new URL(Astro.url.pathname, 'https://amazondd7.com').href
+} = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://amazondd7.com/#attorney",
+      "name": "Alana Yakovlev",
+      "jobTitle": "Attorney",
+      "url": "https://walkfreelaw.com/about/",
+      "worksFor": {
+        "@id": "https://amazondd7.com/#legalservice"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://amazondd7.com/#dd7-arbitration",
+      "name": "Amazon DD7 Arbitration Representation",
+      "serviceType": "Amazon payout dispute arbitration",
+      "description": "Legal arbitration services for Amazon sellers facing DD+7 payout holds and reserve suspensions.",
+      "areaServed": "US",
+      "provider": {
+        "@id": "https://amazondd7.com/#legalservice"
+      }
+    },
+    {
+      "@type": "LegalService",
+      "@id": "https://amazondd7.com/#legalservice",
+      "name": "Walk Free Law",
+      "url": "https://amazondd7.com/",
+      "description": "Challenge Amazon DD7 policy decisions through arbitration with flat-fee and hybrid pricing designed to reduce risk and pursue faster resolution.",
+      "telephone": "+1-323-507-6093",
+      "email": "alana@walkfreelaw.com",
+      "areaServed": ["United States", "Florida", "New York", "New Jersey", "California"],
+      "sameAs": ["https://walkfreelaw.com/"],
+      "founder": {
+        "@id": "https://amazondd7.com/#attorney"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Legal Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://amazondd7.com/#dd7-arbitration"
+            }
+          }
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-323-507-6093",
+        "contactType": "Customer Service",
+        "email": "alana@walkfreelaw.com",
+        "availableLanguage": ["English"]
+      },
+      "location": [
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1001 Wilshire Boulevard #2085",
+            "addressLocality": "Los Angeles",
+            "addressRegion": "CA",
+            "postalCode": "90017",
+            "addressCountry": "US"
+          },
+          "telephone": "+1-323-507-6093"
+        },
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2801 Greene St, Suite 9",
+            "addressLocality": "Hollywood",
+            "addressRegion": "FL",
+            "postalCode": "33020",
+            "addressCountry": "US"
+          },
+          "telephone": "+1-754-663-2219"
+        },
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "447 Broadway, Second Floor - #1142",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10013",
+            "addressCountry": "US"
+          },
+          "telephone": "+1-212-365-8009"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://amazondd7.com/#website",
+      "url": "https://amazondd7.com/",
+      "name": "amazondd7.com",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://amazondd7.com/#legalservice"
+      }
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -19,8 +132,25 @@ const { title, description = "Walk Free Law helps individuals and businesses cha
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		
-    <title>{title} | Walk Free Law</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://amazondd7.com/og-image.webp" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://amazondd7.com/og-image.webp" />
+
+    <!-- SITE-WIDE JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)}></script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
