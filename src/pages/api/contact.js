@@ -55,14 +55,15 @@ export async function POST({ request, locals }) {
     } else {
       const body = await response.json();
       console.error("Brevo Error:", body);
-      return new Response(JSON.stringify({ error: "Failed to send email." }), { 
-        status: 500,
+      // Pass the specific Brevo message back so we can see if it's a verification block or key mismatch
+      return new Response(JSON.stringify({ error: `Brevo API Error: ${body.message || 'Unknown provider error'}` }), { 
+        status: 400,
         headers: { "Content-Type": "application/json" }
       });
     }
   } catch (err) {
     console.error("API Error Server-side:", err);
-    return new Response(JSON.stringify({ error: "Server processing error." }), { 
+    return new Response(JSON.stringify({ error: `Server Crash: ${err.message || String(err)}` }), { 
       status: 500,
       headers: { "Content-Type": "application/json" }
     });
