@@ -1,6 +1,6 @@
 export const prerender = false; // Ensures this route runs on Cloudflare Workers edge
 
-export async function POST({ request, env }) {
+export async function POST({ request, locals }) {
   try {
     const data = await request.json();
     const { name, email, phone, description } = data;
@@ -13,10 +13,13 @@ export async function POST({ request, env }) {
       });
     }
 
-    // For Cloudflare Workers, we use Brevo's HTTP API rather than raw SMTP
-    const BREVO_API_KEY = import.meta.env.BREVO_API_KEY || (typeof process !== "undefined" ? process.env.BREVO_API_KEY : null) || "YOUR_FALLBACK_KEY";
-    const SENDER_EMAIL = import.meta.env.SENDER_EMAIL || (typeof process !== "undefined" ? process.env.SENDER_EMAIL : null) || "intake@walkfreelaw.com";
-    const DESTINATION_EMAIL = import.meta.env.DESTINATION_EMAIL || (typeof process !== "undefined" ? process.env.DESTINATION_EMAIL : null) || "intake@walkfreelaw.com";
+    // For Cloudflare Workers, Astro buries secret environment variables inside locals.runtime.env
+    // We create a fallback chain so it works natively on both local 'npm run dev' and 'Cloudflare Edge'
+    const cfEnv = (locals && locals.runtime && locals.runtime.env) ? locals.runtime.env : {};
+    
+    const BREVO_API_KEY = cfEnv.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || (typeof process !== "undefined" ? process.env.BREVO_API_KEY : null) || "YOUR_FALLBACK_KEY";
+    const SENDER_EMAIL = cfEnv.SENDER_EMAIL || import.meta.env.SENDER_EMAIL || (typeof process !== "undefined" ? process.env.SENDER_EMAIL : null) || "intake@walkfreelaw.com";
+    const DESTINATION_EMAIL = cfEnv.DESTINATION_EMAIL || import.meta.env.DESTINATION_EMAIL || (typeof process !== "undefined" ? process.env.DESTINATION_EMAIL : null) || "intake@walkfreelaw.com";
 
     // Format the email
     const htmlEmail = `
