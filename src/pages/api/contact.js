@@ -34,6 +34,9 @@ export async function POST({ request, locals }) {
       <p>${description.replace(/\n/g, '<br />')}</p>
     `;
 
+    // Parse comma-separated destination emails into Brevo's expected array of objects format
+    const toRecipients = DESTINATION_EMAIL.split(',').map(e => ({ email: e.trim() })).filter(e => e.email);
+
     // Dispatch to Brevo HTTP API natively on Edge (bypassing SMTP TCP restrictions)
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
@@ -43,7 +46,7 @@ export async function POST({ request, locals }) {
       },
       body: JSON.stringify({
         sender: { name: "Website Intake", email: SENDER_EMAIL },
-        to: [{ email: DESTINATION_EMAIL }],
+        to: toRecipients,
         subject: `New Intake: Amazon DD+7 Dispute (${name})`,
         htmlContent: htmlEmail
       })
